@@ -10,7 +10,10 @@
 // 2. I think my temp sensor is bad beacuse the temp doesn't seem quite right (Doug)
 //     -- will need to test sensor or get a better one (Doug)
 //------------------------------- ChangeLog ---------------------------------------------------------------------
-// July 28 2016 21:20 (Doug) Created .ino file and did some minor testing, see comment section
+// July 28 2016 21:20   (Doug)   Created .ino file and did some minor testing, see comment section
+// August 14 2016 16:00 (Doug)   Changed the output to serial bits to allow for the python program ReadSerial.py to write 
+//                               the data to a text file. Also adjusted the delay on the write portion to 1 second, 100 \
+//                               micro seconds.
 
 // Variables to be used in this code
   #define aref 3.3  // Sets the reference as 3.3
@@ -40,21 +43,22 @@ void loop() {
     float TempRankine = TempFahrenheit + 459.67; // Imperial engineering
    
   // Printing the voltage of the sensor and the quantifiable units, based off of the voltage
-    Serial.print("{");
+    Serial.write('\n');
+//    Serial.write("Im Working!!!");
+    Serial.write('{');
     Serial.print(SensorValue);
-    Serial.print("|");
+    Serial.write('|');
     Serial.print(Voltage);
-    Serial.print("|");
+    Serial.write('|');
     Serial.print(TempCelsius);
-    Serial.print("|");
+    Serial.write('|');
     Serial.print(TempKelvin);
-    Serial.print("|");
+    Serial.write('|');
     Serial.print(TempFahrenheit);
-    Serial.print("|");
+    Serial.write('|');
     Serial.print(TempRankine);
-    Serial.print("}");
-    Serial.print("\n");
-    delay(2000);
+    Serial.write('}');
+    delay(1000);
             }
             
 
